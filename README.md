@@ -72,7 +72,7 @@ If your model has custom methods, you must specify their names and their return 
 ```python
 
  model_method_specs = {'to_dict': {'': ''}}
- mock = make_mocks(Event, model_method_specs=model_method_specs)
+ mock = make_mocks(Model, model_method_specs=model_method_specs)
  
  ```
 
