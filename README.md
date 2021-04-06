@@ -1,4 +1,4 @@
-# Django-mockingbird: easily write unit tests for Django without touching the database
+# Django Mockingbird: easily write unit tests for Django without touching the database
 
 
 
@@ -12,13 +12,21 @@ Many developers believe that unit tests should not touch the database in any way
 
 ## 3. How can I use it?
 
+### Installation 
+
+```python
+pip install djangomockingbird
+```
+
+
+
 
 ### Constructions the mocks
 
 ```python
 
 from models import Model
-from django-mockingbird import make_mocks
+from djangomockingbird import make_mocks
 
 my_mock = make_mocks(Model)
 
@@ -27,28 +35,36 @@ my_mock is now an object that mimics Model.
 
 ### Using the mocks 
 
-Monkeypatching the object directly using its absolute path:
+
+The most straightforward way is to monkeypatch the object directly using its absolute path. In this example function_to_test is a function that can containt any amount of queries involving Model. 
+
 
 ```python
-from django-mockingbird import make_mocks
+from djangomockingbird import make_mocks
 import myapp
+import function_to_test
 
 def test_my_test_case():
 
     myapp.myfile.myfunction.Model = make_mocks(Model)
+    result = function_to_test()
+    #assertions here
 
 ```
+A good way to use Django mockingbird is also alongside Pytest.
 
-Monkeypatching the object using unittest's mock.patch decorator:
 
 ```python
-from django-mockingbird import make_mocks
-from unittest.mock import patch
+import pytest
+from djangomockingbird import make_mocks
+import myapp
+import function_to_test
 
-@patch(myapp.myfile.myfunction.Model)
-def test_my_test_case(mock_model):
-    mock_model = make_mocks(Model)
-
+def test_my_test_case(monkeypatch):
+    fake_blog_post = make_mocks(Model)
+    monkeypatch.setattr('myapp.myfile.myfunction.Model', mock_model)
+    result = functiin_to_test()
+    #assertions here
 
 ```
 
