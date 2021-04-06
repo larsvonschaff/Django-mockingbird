@@ -46,7 +46,7 @@ import function_to_test
 
 def test_my_test_case():
 
-    myapp.myfile.myfunction.Model = make_mocks(Model)
+    myapp.myfile.Model = make_mocks(Model)
     result = function_to_test()
     #assertions here
 
@@ -62,7 +62,7 @@ import function_to_test
 
 def test_my_test_case(monkeypatch):
     fake_blog_post = make_mocks(Model)
-    monkeypatch.setattr('myapp.myfile.myfunction.Model', mock_model)
+    monkeypatch.setattr('myapp.myfile.Model', mock_model)
     result = function_to_test()
     #assertions here
 
