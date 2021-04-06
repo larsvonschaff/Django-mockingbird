@@ -61,14 +61,14 @@ import myapp
 import function_to_test
 
 def test_my_test_case(monkeypatch):
-    fake_blog_post = make_mocks(Model)
+    mock_model = make_mocks(Model)
     monkeypatch.setattr('myapp.myfile.Model', mock_model)
     result = function_to_test()
     #assertions here
 
 ```
 
-You can also use the mocks in many other ways, such as setting them as return values of functions (for example with unittests's mock.patch decorator), using only their specific class methods and of course combining them with other libraries and their features. Be as creative as you like.
+You can also use the mocks in many other ways, such as setting them as return values of functions (for example with unittests's mock.patch decorator), using only their specific class methods and of course combining them with other libraries and their features. You can be as creative as you like.
 
 ### Specifiying query return data
 
