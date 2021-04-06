@@ -4,11 +4,11 @@
 
 ## 1. What is Django-mockingbird?
 
-Django-mockingbird is a utility library that helps you write unit tests for Django that do not touch the database. It does that by creating a mock object that mimics the behaviour of a specified Django model without actually executing any queries under the hood. The object automatically gets all the fields, methods and managers of the model, effectively providing a way to mock all of Django ORM’s behaviours with as little as one line of code per model. All you need to do is monkeypatch the actual Django model with Django-mockingbird’s mock model for the duration of the test case, either manually or with the use of other libraries.
+Django-mockingbird is a utility library that helps you write unit tests for Django that do not touch the database. It does that by creating a mock object that mimics the behaviour of a specified Django model without actually executing any queries under the hood. The object automatically gets all the fields, methods and managers of the model, effectively providing a way to mock all of Django ORM’s behaviours with as little as one line of code per model. All you need to do is monkeypatch the actual Django model with Django-mockingbird’s mock model for the duration of the test case.
 
 ## 2. What problem does it solve ?
 
-Many developers believe that unit tests should not touch the database in any way. As soon as they do they fall under integration testing, however your app should ideally have both. But writing unit tests this way is not in any way straightforward due to the active record nature of the Django ORM. For simple use cases it might be enough to mock just one method on a model class, but for more complex queries with many chained filters, or for larger functions which require several models to be mocked for the test to pass this quickly becomes completely convoluted and even undermines the very point of unit tests by introducing false positives.
+Many developers believe that unit tests should not touch the database in any way. As soon as they do they fall under integration testing, however your app should ideally have both. But writing unit tests this way is not in any way straightforward due to the [active recor](https://en.wikipedia.org/wiki/Active_record_pattern) nature of the Django ORM. For simple use cases it might be enough to mock just one method on a model class, but for more complex queries with many chained filters, or for larger functions which require several models to be mocked for the test to pass this quickly becomes convoluted and even introduces false positives.
 
 ## 3. How can I use it?
 
@@ -72,7 +72,7 @@ You can also use the mocks in many other ways, such as setting them as return va
 
 ### Specifiying query return data
 
-You can specify the values of specific fields of the model object you are mocking. If you don’t empty strings will be returned. Construct a dictionary with keys for field names and values for a desired return value and pass it to the 'specs' argument of make_mocks. If you try to specify a nonexisant field an error will be thrown.
+You can specify the values of specific fields of the model object you are mocking. If you don’t empty strings will be returned. Construct a dictionary with keys for field names and values for a desired return value and pass it to the 'specs' argument of make_mocks. If you try to specify a nonexisant field as a key an error will be thrown, but you can specify any kind of value you want.
 
 ```python
 
