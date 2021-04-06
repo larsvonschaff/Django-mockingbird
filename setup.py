@@ -1,31 +1,22 @@
 import pathlib
 from setuptools import setup
 
-# The directory containing this file
-HERE = pathlib.Path(__file__).parent
 
-# The text of the README file
+HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
-# This call to setup() does all the work
-setup(
-    name="django-mockingbird",
-    version="1.0.0",
 
-    description="easily write unit tests for Django without touching the database",
+setup(
+    name="djangomockingbird",
+    version="1.0.0",
+    description="Easily write unit tests for Django without touching the database",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/realpython/reader",
-    author="Real Python",
-    author_email="info@realpython.com",
+    url="https://github.com/larsvonschaff/Django-mockingbird",
+    author_email="larsvonschaff@gmail.com",
     license="MIT",
-    classifiers=[
-        "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-    ],
-    packages=["reader"],
-
+    install_requires=["django"],
+    packages=["djangomockingbird"],
 
 )
 

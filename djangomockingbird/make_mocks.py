@@ -1,9 +1,9 @@
 from django.db.models import ForeignKey, ManyToManyField, OneToOneField
-from django_mockingbird.utils import *
+from djangomockingbird.utils import *
 import django
 from django.db import models
 from django.apps import apps
-from django_mockingbird.queryset import *
+from djangomockingbird.queryset import *
 import inspect
 import types
 

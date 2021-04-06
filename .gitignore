@@ -1,3 +1,10 @@
 .DS_Store
 utils.pyc
 __pycache__
+venv
+build
+dist
+.vscode
+djangomockingbird.egg-info
+setup.py
+

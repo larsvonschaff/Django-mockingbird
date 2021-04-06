@@ -1,6 +1,6 @@
 import datetime
 import collections
-from django_mockingbird.queryset_utils import *
+from djangomockingbird.queryset_utils import *
 
 
 #queryset that returns mock class objects
