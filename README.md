@@ -8,7 +8,7 @@ Django-mockingbird is a utility library that helps you write unit tests for Djan
 
 ## 2. What problem does it solve ?
 
-Many developers believe that unit tests should not touch the database in any way. As soon as they do they fall under integration testing, however your app should ideally have both. But writing unit tests this way is not in any way straightforward due to the [active recor](https://en.wikipedia.org/wiki/Active_record_pattern) nature of the Django ORM. For simple use cases it might be enough to mock just one method on a model class, but for more complex queries with many chained filters, or for larger functions which require several models to be mocked for the test to pass this quickly becomes convoluted and even introduces false positives.
+Many developers believe that unit tests should not touch the database in any way. As soon as they do they fall under integration testing, however your app should ideally have both. But writing unit tests this way is not in any way straightforward due to the [active record](https://en.wikipedia.org/wiki/Active_record_pattern) nature of the Django ORM. For simple use cases it might be enough to mock just one method on a model class, but for more complex queries with many chained filters, or for larger functions which require several models to be mocked for the test to pass this quickly becomes convoluted and even introduces false positives.
 
 ## 3. How can I use it?
 
@@ -51,7 +51,7 @@ def test_my_test_case():
     #assertions here
 
 ```
-A good way to use Django mockingbird is also alongside Pytest.
+A good way to use Django mockingbird is also alongside [Pytest](https://docs.pytest.org/en/stable/).
 
 
 ```python
