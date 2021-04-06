@@ -36,7 +36,7 @@ my_mock is now an object that mimics Model.
 ### Using the mocks 
 
 
-The most straightforward way is to monkeypatch the object directly using its absolute path. In this example function_to_test is a function that can containt any amount of queries involving Model. 
+The most straightforward way is to monkeypatch the object directly using its absolute path. In this example function_to_test is a function that can containt any amount of queries involving Model. With Django mockingbird it only takes one line of code for this type of test to pass.
 
 
 ```python
@@ -63,12 +63,14 @@ import function_to_test
 def test_my_test_case(monkeypatch):
     fake_blog_post = make_mocks(Model)
     monkeypatch.setattr('myapp.myfile.myfunction.Model', mock_model)
-    result = functiin_to_test()
+    result = function_to_test()
     #assertions here
 
 ```
 
-### Specifiying return data
+You can also use the mocks in many other ways, such as setting them as return values of functions (for example with unittests's mock.patch decorator), using only their specific class methods and of course combining them with other libraries and their features. Be as creative as you like.
+
+### Specifiying query return data
 
 You can specify the values of specific fields of the model object you are mocking. If you don’t empty strings will be returned. Construct a dictionary with keys for field names and values for a desired return value and pass it to the 'specs' argument of make_mocks. If you try to specify a nonexisant field an error will be thrown.
 
@@ -81,9 +83,9 @@ mock = make_mocks(Model, specs={‘model_field’:’desired_value’})
 
 
 
-#### Attention! Cases where returns must be specified:
+### Attention! Cases where returns must be specified: Model methods!
 
-If your model has custom methods, you must specify their names and their return to the mock. You will likely need to specify the same data type your actual method returns to make your tests pass.
+If your model has custom methods, you must specify their names and return data to the mock, otherwise your tests won't pass. 
 
 ```python
 
