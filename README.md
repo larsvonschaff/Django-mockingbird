@@ -1,5 +1,7 @@
 # Django Mockingbird: easily write unit tests for Django without touching the database
 
+![PyPI](https://img.shields.io/pypi/v/djangomockingbird)
+
 
 
 ## 1. What is Django Mockingbird?
