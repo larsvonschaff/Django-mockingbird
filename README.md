@@ -76,7 +76,7 @@ You can specify the values of specific fields of the model object you are mockin
 
 ```python
 
-mock = make_mocks(Model, specs={‘model_field’:’desired_value’})
+mock = make_mocks(Model, specs={'model_field':'desired_value'})
 
 ```
 
