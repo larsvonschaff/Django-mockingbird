@@ -42,9 +42,6 @@ class MockBaseQueryset(object):
 
         return self      
 
-    def distinct(self, *args, **kwargs):
-        return self  
-
     def values(self, *args, **kwargs):
         return MockDerivedQueryset(self.model_dict)
 
