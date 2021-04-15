@@ -6,31 +6,41 @@ from djangomockingbird.queryset_utils import *
 #queryset that returns mock class objects
 class MockBaseQueryset(object):
 
+    CHAINABLE_METHODS = [
+        'filter',
+        'exclude',
+        'prefetch_related',
+        'order_by',
+        'reverse',
+        'distinct',
+        'all',
+        'union',
+        'intersection',
+        'difference',
+        'select_related',
+        'extra',
+        'defer',
+        'only',
+        'using',
+        'select_for_update',
+        'raw',
+    ]
+
     def __init__(self, mock_class, model_dict):
         self.mock_class = mock_class
         self.model_dict = model_dict
 
-    #methods that return new querysets
-    def filter(self, *args, **kwargs):
-        return self
-
-    def exclude(self, *args, **kwargs):
-        return self
+    def __getattr__(self, name):
+        if name in self.CHAINABLE_METHODS:
+            return lambda *args, **kwargs: self
+        else:
+            raise AttributeError()
 
     def annotate(self, *args, **kwargs):
 
         model_class = annotate_mock_class(kwargs, self.mock_class)
 
         return self      
-
-    def order_by(self, *args, **kwargs):
-        return self
-
-    def reverse(self, *args, **kwargs):
-        return self
-
-    def distinct(self, *args, **kwargs):
-        return self  
 
     def values(self, *args, **kwargs):
         return MockDerivedQueryset(self.model_dict)
@@ -59,42 +69,6 @@ class MockBaseQueryset(object):
 
     def none(self, *args, **kwargs):
         return None   
-
-    def all(self):
-        return self  
-
-    def union(self, *args, **kwargs):
-        return self
-
-    def intersection(self, *args, **kwargs):
-        return self
-
-    def difference(self, *args, **kwargs):
-        return self
-
-    def select_related(self, *args, **kwargs):
-        return self
-
-    def prefetch_related(self, *args, **kwargs):
-        return  self   
-
-    def extra(self, *args, **kwargs):
-        return self
-
-    def defer(self, *args, **kwargs):
-        return self
-
-    def only(self, *args, **kwargs):
-        return self
-
-    def using(self, *args, **kwargs):
-        return self
-
-    def select_for_update(self, *args, **kwargs):
-        return self
-
-    def raw(self, *args, **kwargs):
-        return self       
 
     #methods that do not return querysets
     def get(self, *args, **kwargs):
