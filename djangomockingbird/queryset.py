@@ -165,6 +165,8 @@ class MockDerivedQueryset(MockBaseQueryset):
 
     def __init__(self,return_value):
         self.return_value = return_value
+        if isinstance(self.return_value, dict):
+            dict.__init__(self, return_value)
 
     #methods that do not return querysets
     def get(self, *args, **kwargs):
