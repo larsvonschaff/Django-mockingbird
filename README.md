@@ -5,9 +5,9 @@
 
 
 
-## 1. What is Django-mockingbird and why would I need it?
+## 1. What is Django Mockingbird and why would I need it?
 
-Until now, there were two options for writing tests for a Django application: either create objects in the database for every test or mock the database queries using [Unit test’s Mock](https://docs.python.org/3/library/unittest.mock.html). While the former is slow, the latter is complicated to write and read. Both add a lot of setup code to our tests. Django-mockingbird introduces a new way to write tests for Django, which is fast to run as well as simple to write.
+Until now, there were two options for writing tests for a Django application: either create objects in the database for every test or mock the database queries using [Unit test’s Mock](https://docs.python.org/3/library/unittest.mock.html). While the former is slow, the latter is complicated to write and read. Both add a lot of setup code to our tests. Django Mockingbird introduces a new way to write tests for Django, which is fast to run as well as simple to write.
 
 ## 2. How does it work?
 
@@ -36,7 +36,7 @@ my_mock is now an object that mimics Model's behaviour exactly.
 ### Using the mocks 
 
 
-The most straightforward way is to monkeypatch the object directly using its absolute path. In this example function_to_test is a function that can containt any amount of queries involving Model. With Django mockingbird only the code below is necessary for this kind of test to pass, no matter how complicated the queries.
+The most straightforward way is to monkeypatch the object directly using its absolute path. In this example function_to_test is a function that can containt any amount of queries involving Model. With Django Mockingbird only the code below is necessary for this kind of test to pass, no matter how complicated the queries.
 
 
 ```python
