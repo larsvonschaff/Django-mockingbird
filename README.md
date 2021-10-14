@@ -93,11 +93,13 @@ If your model has custom methods and they are used by the test, you must specify
 
 ## 4. Is it production ready? Can I help make it better? 
 
-For the general case it is but there are certainly advanced use cases that are not yet supported, most notably [custom model managers](https://docs.djangoproject.com/en/3.1/topics/db/managers/#custom-managers). For those test cases you can try supplementing Django Mockingbird with your own code or other libraries. Because this tool is really just one elaborate mock Model it is very flexible and plays well with pretty much anything. We would appreciate you opening issues to bring specific defects or oversights to light. Contributions are also kindly accepted - see more on the code arhitecture principles below if you are interested. 
+This is still a very new project, but is quite stable for the general use case. However, there are advanced use cases that are not yet supported, most notably [custom model managers](https://docs.djangoproject.com/en/3.1/topics/db/managers/#custom-managers). For those test cases you can try supplementing Django Mockingbird with your own code or other libraries. Because this tool is really just one elaborate mock Model it is very flexible and plays well with pretty much anything.
+
+We would appreciate you opening issues to any defects or oversights to light. Contributions are also kindly accepted - see more on the code arhitecture principles below if you are interested. 
 
 ## 5. Where can I read more details on the architcture and stuff?
 
-Read about the use of functional programming principles in the library [here](http://www.cmdctrlesc.xyz/post/6) and on the use of Python's metaprogramming features [here](http://www.cmdctrlesc.xyz/post/5)
+Read about the how functional programming principles were used in the library [here](http://www.cmdctrlesc.xyz/post/6) and on metaprogramming features [here](http://www.cmdctrlesc.xyz/post/5).
 
 
 
