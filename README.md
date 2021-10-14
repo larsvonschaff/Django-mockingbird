@@ -7,11 +7,11 @@
 
 ## 1. What is Django-mockingbird and why would I need it?
 
-Until now, there were two options for writing tests for a Django application: either create objects in the database for every test or mock the database queries using unit test’s mock. While the former is slow, the latter is complicated to grasp. Both add a lot of setup code to our tests. Django-mockingbird introduces a new way to write tests for Django, which is fast as well as straightforward.
+Until now, there were two options for writing tests for a Django application: either create objects in the database for every test or mock the database queries using [Unit test’s Mock](https://docs.python.org/3/library/unittest.mock.html). While the former is slow, the latter is complicated to write and read. Both add a lot of setup code to our tests. Django-mockingbird introduces a new way to write tests for Django, which is fast to run as well as simple to write.
 
 ## 2. How does it work?
 
-It creates a mock object which behaves exactly like the Django model in your test, but it does not execute any queries under the hood. It only takes one line of code to use it in your test. It is not meant to be used in place of frameworks like Pytest, but to complement them.
+It works my creating a mock object which behaves exactly like the Django model in your test, but does not execute any queries under the hood. It only takes one line of code to use it in your test. It is not meant to be used in place of frameworks like Pytest, but to complement them.
 
 ## 3. How do I use it?
 
@@ -68,8 +68,6 @@ def test_my_test_case(monkeypatch):
 
 ```
 
-You can also use the mocks in many other ways, such as setting them as return values of functions (for example with unittests's mock.patch decorator), using only their specific class methods and of course combining them with other libraries and their features. Django Mockingbird is flexible, so be as creative as you like.
-
 ### Specifiying mock return data
 
 You can specify the values of specific fields of the model object you are mocking. If you don’t empty strings will be returned. Construct a dictionary with field names as keys and desired returs as values and pass it to the 'specs' argument of make_mocks. If you try to specify a nonexisant field as a key an error will be thrown, but you can specify any kind of value you want.
@@ -95,7 +93,7 @@ If your model has custom methods and they are used by the test, you must specify
 
 ## 4. Is it production ready? Can I help make it better? 
 
-This is the very first version of Django Mockingbird. This is good to keep in mind in the sense of the possibility of bugs arising as well as in the sense of the core concept of the project being somewhat open to improvements.There are certainly advanced use cases that are not yet supported, most notably [custom model managers](https://docs.djangoproject.com/en/3.1/topics/db/managers/#custom-managers). For those test cases you can try supplementing Django Mockingbird with your own code or other libraries - because of its sole focus on the Django model object it plays well with pretty much everything. We would appreciate you opening issues to bring specific defects or oversights to light. Contributions are also kindly accepted - see more on the code arhitecture principles below if you are interested. 
+For the general case it is but there are certainly advanced use cases that are not yet supported, most notably [custom model managers](https://docs.djangoproject.com/en/3.1/topics/db/managers/#custom-managers). For those test cases you can try supplementing Django Mockingbird with your own code or other libraries. Because this tool is really just one elaborate mock Model it is very flexible and plays well with pretty much anything. We would appreciate you opening issues to bring specific defects or oversights to light. Contributions are also kindly accepted - see more on the code arhitecture principles below if you are interested. 
 
 ## 5. Where can I read more details on the architcture and stuff?
 
