@@ -98,7 +98,7 @@ This is still a very new project, but is quite stable for the general use case. 
 
 We would appreciate you opening issues to bring any defects or oversights to light. Contributions are also kindly accepted - see more on the code arhitecture principles below if you are interested. 
 
-## 5. Where can I read more details on the architcture and stuff?
+## 5. Where can I read more details on the architecture?
 
 Read about the how functional programming principles were used in the library [here](http://www.cmdctrlesc.xyz/post/6) and on metaprogramming features [here](http://www.cmdctrlesc.xyz/post/5).
 
