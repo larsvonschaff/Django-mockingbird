@@ -2,6 +2,7 @@
 
 
 ![GitHub](https://img.shields.io/github/license/larsvonschaff/Django-mockingbird)
+![PyPI](https://img.shields.io/pypi/v/djangomockingbird)
 
 
 
