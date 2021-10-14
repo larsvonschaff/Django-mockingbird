@@ -1,4 +1,4 @@
-# Django Mockingbird: the fastest way to write fastest Django unit tests
+# Django Mockingbird: the fastest way to write the fastest Django unit tests
 
 ![PyPI](https://img.shields.io/pypi/v/djangomockingbird)
 ![GitHub](https://img.shields.io/github/license/larsvonschaff/Django-mockingbird)
