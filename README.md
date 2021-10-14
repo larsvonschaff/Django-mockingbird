@@ -93,7 +93,7 @@ If your model has custom methods and they are used by the test, you must specify
 
 ## 4. Is it production ready? Can I help make it better? 
 
-This is still a very new project, but is quite stable for the general use case. However, there are advanced use cases that are not yet supported, most notably [custom model managers](https://docs.djangoproject.com/en/3.1/topics/db/managers/#custom-managers). For those test cases you can try supplementing Django Mockingbird with your own code or other libraries. Because this tool is really just one elaborate mock Model it is very flexible and plays well with pretty much anything.
+This is still a very new project, but is quite stable for the general use case. However, there are advanced use cases that are not yet supported, most notably [custom model managers](https://docs.djangoproject.com/en/3.1/topics/db/managers/#custom-managers). For those test cases you can try supplementing Django Mockingbird with your own code or other libraries. Because this tool is really just one elaborate mock model it is very flexible and plays well with pretty much anything.
 
 We would appreciate you opening issues to bring any defects or oversights to light. Contributions are also kindly accepted - see more on the code arhitecture principles below if you are interested. 
 
