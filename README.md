@@ -11,7 +11,7 @@ Until now, there were two options for writing tests for a Django application: ei
 
 ## 2. How does it work?
 
-It works my creating a mock object which behaves exactly like the Django model in your test, but does not execute any queries under the hood. It only takes one line of code to use it in your test. It is not meant to be used in place of frameworks like Pytest, but to complement them.
+It works by creating a mock object which behaves exactly like the Django model in your test, but does not execute any queries under the hood. It only takes one line of code to use it in your test. It is not meant to be used in place of frameworks like Pytest, but to complement them.
 
 ## 3. How do I use it?
 
