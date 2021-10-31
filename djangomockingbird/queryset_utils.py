@@ -24,13 +24,13 @@ def get_keys_from_dict(my_dict: Dict[Any, Any]) -> List[Any]:
     return [key for key in my_dict.keys()]
 
 
-def make_mock_in_bulk_dict(*args: List[Any]) -> Dict[Any, Any]:
+def make_mock_in_bulk_dict(args: List[Any]) -> Dict[Any, Any]:
     mock_in_bulk_dict = {}
 
     if len(list(args)) == 0:
         mock_in_bulk_dict['1'] = ' '
     else:
-        for item in args[0]:
+        for item in args:
             mock_in_bulk_dict[item] = ' '
 
     return mock_in_bulk_dict

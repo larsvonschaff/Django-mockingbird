@@ -17,7 +17,7 @@ def make_spec_dict(model_fields: List[Any], model_name: Any, specs: Union[None, 
         model_dict.update(specs)
 
     model_dict['id'] = " "
-    model_dict['pk'] = '1'
+    model_dict['pk'] = 1    # type: ignore
 
     return model_dict
 

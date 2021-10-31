@@ -1,5 +1,5 @@
 import unittest
-from utils import make_spec_dict, get_custom_methods, create_function, get_model_manager, set_backwards_managers, set_forwards_managers
+from djangomockingbird.utils import make_spec_dict, get_custom_methods, create_function, get_model_manager, set_backwards_managers, set_forwards_managers
 from unittest.mock import MagicMock
 
 
