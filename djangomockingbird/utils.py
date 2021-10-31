@@ -1,8 +1,9 @@
-import inspect
 import types
+from typing import Any, Dict, List, Callable, Union
+
 
 # construct a dict from the model
-def make_spec_dict(model_fields, model_name, specs=None, ):
+def make_spec_dict(model_fields: List[Any], model_name: Any, specs: Union[None, Dict] = None) -> Dict[Any, Any]:
     fields = [field.name for field in model_fields if field.concrete]
     model_dict = {field: ' ' for field in fields}
 
@@ -16,13 +17,13 @@ def make_spec_dict(model_fields, model_name, specs=None, ):
         model_dict.update(specs)
 
     model_dict['id'] = " "
-    model_dict['pk'] = 1
+    model_dict['pk'] = 1    # type: ignore
 
     return model_dict
 
 
 # get all methods of a model which are custom/user defined/not inherited.
-def get_custom_methods(model_name):
+def get_custom_methods(model_name: Any) -> List[Any]:
     custom_methods = []
     for name, item in model_name.__dict__.items():
         if isinstance(item, types.FunctionType):
@@ -30,23 +31,23 @@ def get_custom_methods(model_name):
 
     return custom_methods
 
+
 # function for creating functions with dynamic names and return values. used for mocking custom model methods.
-def create_function(name, arg, return_value):
+def create_function(name: str, arg: Any, return_value: Any) -> Callable:
     def inner(arg):
         return return_value
     inner.__name__ = name
     return inner
 
 
-def get_model_manager(model_name):
+def get_model_manager(model_name: Any) -> str:
     manager_name = str(model_name._meta.default_manager)
     manager_name.split('.')
 
     return (manager_name.split('.'))[2]
 
 
-def set_backwards_managers(model_fields, mock_class, manager):
-    
+def set_backwards_managers(model_fields: List[Any], mock_class: object, manager: object) -> object:
     #get all reverse relations
     reverse_relation_fields = [
         field for field in model_fields if field.auto_created and not field.concrete and not field.one_to_one]
@@ -56,11 +57,10 @@ def set_backwards_managers(model_fields, mock_class, manager):
         if field.one_to_many or field.many_to_many:
             setattr(mock_class, manager_name, manager)
 
-
     return mock_class        
 
 
-def set_forwards_managers(model_fields, mock_class, manager):
+def set_forwards_managers(model_fields: List[Any], mock_class: object, manager: object) -> object:
 
     for field in model_fields:
         if field.many_to_many:

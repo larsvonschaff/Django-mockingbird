@@ -1,4 +1,4 @@
-from queryset_utils import annotate_mock_class, make_mock_list_from_args, get_keys_from_dict, make_mock_in_bulk_dict, make_mock_aggregate_dict, annotate_return_value
+from djangomockingbird.queryset_utils import annotate_mock_class, make_mock_list_from_args, get_keys_from_dict, make_mock_in_bulk_dict, make_mock_aggregate_dict, annotate_return_value
 from unittest.mock import MagicMock
 import unittest
 
@@ -58,7 +58,7 @@ class TestAnnotateReturnValue(unittest.TestCase):
         kwargs = {'test':'test'}
         return_value = {'original_key':'original_value'}
         new_return_value = annotate_return_value(kwargs, return_value)
-        self.assertEqual(new_return_value, {'original_key': ' ', 'test': ' '})
+        self.assertEqual(new_return_value, {'original_key': ' ', 'test': 'test'})
 
 
 

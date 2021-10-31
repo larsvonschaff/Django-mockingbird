@@ -1,14 +1,10 @@
-from django.db.models import ForeignKey, ManyToManyField, OneToOneField
-from djangomockingbird.utils import *
-import django
-from django.db import models
-from django.apps import apps
 from djangomockingbird.queryset import *
-import inspect
-import types
+from djangomockingbird.utils import *
 
 
-def make_mocks(model_name, specs=None, model_method_specs=None):
+def make_mocks(model_name: Any,
+               specs: Union[None, Dict[Any, Any]] = None,
+               model_method_specs: Union[None, Dict[Any, Any]] = None) -> object:
 
     model_fields = model_name._meta.get_fields()
     
@@ -59,7 +55,7 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
     def get_absolute_url(self):
         return '/fake_testing_url/{}'.format(str(self.mock_class))
 
-    def __init__(*args, **kwargs):
+    def __init__(*args: Optional[list], **kwargs: Optional[dict]):
         pass
 
     # add model methods to mock
@@ -69,6 +65,3 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
     setattr(mock_class, '__init__', __init__)
 
     return mock_class
-
-
-

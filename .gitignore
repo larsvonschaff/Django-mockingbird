@@ -7,4 +7,4 @@ dist
 .vscode
 djangomockingbird.egg-info
 setup.py
-
+.idea
