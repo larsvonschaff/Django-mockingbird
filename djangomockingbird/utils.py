@@ -37,7 +37,7 @@ def create_function(name, arg, return_value):
     inner.__name__ = name
     return inner
 
-
+#get name of model manager
 def get_model_manager(model_name):
     manager_name = str(model_name._meta.default_manager)
     manager_name.split('.')
