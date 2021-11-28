@@ -1,4 +1,5 @@
 import unittest
+import djangomockingbird
 from djangomockingbird import utils
 from unittest.mock import MagicMock
 
