@@ -3,7 +3,7 @@ import django
 from django.db import models
 from django.apps import apps
 from djangomockingbird import queryset_utils
-from djangomockingbird.queryset import MockBaseQueryset, MockRelatedManager
+from djangomockingbird import queryset
 import inspect
 import types
 
