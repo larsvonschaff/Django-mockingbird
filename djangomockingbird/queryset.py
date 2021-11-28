@@ -1,6 +1,6 @@
 import datetime
 import collections
-from djangomockingbird.queryset_utils import *
+from djangomockingbird import queryset_utils
 
 
 #queryset that returns mock class objects
@@ -38,7 +38,7 @@ class MockBaseQueryset(object):
 
     def annotate(self, *args, **kwargs):
 
-        model_class = annotate_mock_class(kwargs, self.mock_class)
+        model_class = queryset_utils.annotate_mock_class(kwargs, self.mock_class)
 
         return self      
 
@@ -47,9 +47,9 @@ class MockBaseQueryset(object):
 
     def values_list(self, *args, **kwargs):
 
-        mock_values_list = make_mock_list_from_args(args)
+        mock_values_list = queryset_utils.make_mock_list_from_args(args)
         mock_values_tuple = tuple(mock_values_list)
-        mock_fields_list = get_keys_from_dict(self.model_dict)
+        mock_fields_list = queryset_utils.get_keys_from_dict(self.model_dict)
         mock_named_tuple = collections.namedtuple('Mock_named_tuple', mock_fields_list)
 
         if 'flat' in kwargs and kwargs['flat'] == True:
@@ -94,7 +94,7 @@ class MockBaseQueryset(object):
 
     def in_bulk(self, *args, **kwargs):
 
-        mock_in_bulk_dict = make_mock_in_bulk_dict(args)
+        mock_in_bulk_dict = queryset_utils.make_mock_in_bulk_dict(args)
     
         return mock_in_bulk_dict
 
@@ -115,7 +115,7 @@ class MockBaseQueryset(object):
     
     def aggregate(self, *args, **kwargs):
 
-        mock_aggregate_dict = make_mock_aggregate_dict(kwargs)
+        mock_aggregate_dict = queryset_utils.make_mock_aggregate_dict(kwargs)
 
         return mock_aggregate_dict
 
@@ -213,7 +213,7 @@ class MockDerivedQueryset(MockBaseQueryset, dict):
     #other methods
     def annotate(self, *args, **kwargs):
 
-        annotated_return_value = annotate_return_value(self.return_value, kwargs)
+        annotated_return_value = queryset_utils.annotate_return_value(self.return_value, kwargs)
        
         return MockDerivedQueryset(annotated_return_value)
 
