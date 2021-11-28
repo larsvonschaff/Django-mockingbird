@@ -1,4 +1,4 @@
-from queryset_utils import annotate_mock_class, make_mock_list_from_args, get_keys_from_dict, make_mock_in_bulk_dict, make_mock_aggregate_dict, annotate_return_value
+from djangomockingbird.queryset_utils import annotate_mock_class, make_mock_list_from_args, get_keys_from_dict, make_mock_in_bulk_dict, make_mock_aggregate_dict, annotate_return_value
 from unittest.mock import MagicMock
 import unittest
 
