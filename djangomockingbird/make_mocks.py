@@ -30,9 +30,9 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
             func = queryset_utils.create_function(k, mock_class, v)
             setattr(mock_class, str(k), func)
 
-    manager_class = MockBaseQueryset(mock_class, model_dict)
+    manager_class = queryset.MockBaseQueryset(mock_class, model_dict)
 
-    related_manager_class = MockRelatedManager(mock_class, model_dict)
+    related_manager_class = queryset.MockRelatedManager(mock_class, model_dict)
 
     #the next two methods set manager classes to the mock which are meant to mimic this behaviour: https://docs.djangoproject.com/en/3.1/ref/models/relations/
     
