@@ -2,7 +2,7 @@ from django.db.models import ForeignKey, ManyToManyField, OneToOneField
 import django
 from django.db import models
 from django.apps import apps
-from djangomockingbird.queryset_utils import make_spec_dict, get_custom_methods, create_function,  set_backwards_managers, set_forwards_managers, get_model_manager, set_backwards_maangers
+from djangomockingbird import queryset_utils
 from djangomockingbird.queryset import MockBaseQueryset, MockRelatedManager
 import inspect
 import types
@@ -13,7 +13,7 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
     model_fields = model_name._meta.get_fields()
     
     # create dict to mimic model
-    model_dict = make_spec_dict(model_fields, model_name, specs)
+    model_dict = queryset_utils.make_spec_dict(model_fields, model_name, specs)
 
     # create class from the above dict
     mock_class = type(str(model_name), (object,), model_dict)
@@ -22,12 +22,12 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
     if model_method_specs:
         for k, v in model_method_specs.items():
             # if the user attemps to define a nonexistant  custom method, raise error
-            if k not in get_custom_methods(model_name):
+            if k not in queryset_utils.get_custom_methods(model_name):
                 raise Exception(
                     'The model {} does not have a {} custom method'.format(model_name, k))
                 # handling of custom model methods: user defines the model_method_specs dict, key is name of model, value is expected return
                 # create function from these parameters and set it as an attribute of the mock        
-            func = create_function(k, mock_class, v)
+            func = queryset_utils.create_function(k, mock_class, v)
             setattr(mock_class, str(k), func)
 
     manager_class = MockBaseQueryset(mock_class, model_dict)
@@ -37,12 +37,12 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
     #the next two methods set manager classes to the mock which are meant to mimic this behaviour: https://docs.djangoproject.com/en/3.1/ref/models/relations/
     
     #set methods on the other side of foreign key and many-to-many relations
-    set_backwards_managers(model_fields, mock_class, related_manager_class)
+    queryset_utils.set_backwards_managers(model_fields, mock_class, related_manager_class)
 
     #set methods on the forward side of a many-to-many relation
-    set_forwards_managers(model_fields, mock_class, related_manager_class)
+    queryset_utils.set_forwards_managers(model_fields, mock_class, related_manager_class)
 
-    manager_name = get_model_manager(model_name)
+    manager_name = queryset_utils.get_model_manager(model_name)
 
     def save(self):
         return mock_class()
