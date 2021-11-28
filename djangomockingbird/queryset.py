@@ -161,7 +161,7 @@ class MockBaseQueryset(object):
 
 
 #queryset that returns something other than mock class objects: dicts, tuples, datetime objects etc.
-class MockDerivedQueryset(MockBaseQueryset):
+class MockDerivedQueryset(MockBaseQueryset, dict):
 
     def __init__(self,return_value):
         self.return_value = return_value

@@ -1,9 +1,9 @@
 from django.db.models import ForeignKey, ManyToManyField, OneToOneField
-from djangomockingbird.utils import *
 import django
 from django.db import models
 from django.apps import apps
-from djangomockingbird.queryset import *
+from djangomockingbird.queryset_utils import make_spec_dict, get_custom_methods, create_function,  set_backwards_managers, set_forwards_managers, get_model_manager, set_backwards_maangers
+from djangomockingbird.queryset import MockBaseQueryset, MockRelatedManager
 import inspect
 import types
 
