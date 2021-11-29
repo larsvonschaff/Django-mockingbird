@@ -25,4 +25,4 @@ jobs:
     - name: Analysing the code with pylint
       run: |
           pylint djangomockingbird --errors-only
-          pylint tests --errors-only
+
