@@ -24,4 +24,4 @@ jobs:
         echo "PYTHONPATH=mlprepare" >> $GITHUB_ENV     
     - name: Analysing the code with pylint
       run: |
-          pylint $(find . -name "*.py" | xargs) --errors-only
+          pylint djangomockingbird --errors-only
