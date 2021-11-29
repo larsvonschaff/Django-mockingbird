@@ -19,6 +19,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
         pip install django
+    - name: set pythonpath
+      run: |
+        echo "PYTHONPATH=mlprepare" >> $GITHUB_ENV     
     - name: Analysing the code with pylint
       run: |
           pylint $(find . -name "*.py" | xargs) --errors-only
