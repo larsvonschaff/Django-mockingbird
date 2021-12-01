@@ -3,7 +3,7 @@ import django
 from django.db import models
 from django.apps import apps
 from djangomockingbird import queryset_utils
-from djangomockingbird import queryset
+from djangomockingbird import utils
 import inspect
 import types
 
@@ -13,7 +13,7 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
     model_fields = model_name._meta.get_fields()
     
     # create dict to mimic model
-    model_dict = queryset_utils.make_spec_dict(model_fields, model_name, specs)
+    model_dict = utils.make_spec_dict(model_fields, model_name, specs)
 
     # create class from the above dict
     mock_class = type(str(model_name), (object,), model_dict)
@@ -27,22 +27,22 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
                     'The model {} does not have a {} custom method'.format(model_name, k))
                 # handling of custom model methods: user defines the model_method_specs dict, key is name of model, value is expected return
                 # create function from these parameters and set it as an attribute of the mock        
-            func = queryset_utils.create_function(k, mock_class, v)
+            func = utils.utils.create_function(k, mock_class, v)
             setattr(mock_class, str(k), func)
 
-    manager_class = queryset.MockBaseQueryset(mock_class, model_dict)
+    manager_class = queryset_utils.MockBaseQueryset(mock_class, model_dict)
 
-    related_manager_class = queryset.MockRelatedManager(mock_class, model_dict)
+    related_manager_class = queryset_utils.MockRelatedManager(mock_class, model_dict)
 
     #the next two methods set manager classes to the mock which are meant to mimic this behaviour: https://docs.djangoproject.com/en/3.1/ref/models/relations/
     
     #set methods on the other side of foreign key and many-to-many relations
-    queryset_utils.set_backwards_managers(model_fields, mock_class, related_manager_class)
+    utils.set_backwards_managers(model_fields, mock_class, related_manager_class)
 
     #set methods on the forward side of a many-to-many relation
-    queryset_utils.set_forwards_managers(model_fields, mock_class, related_manager_class)
+    qutils.set_forwards_managers(model_fields, mock_class, related_manager_class)
 
-    manager_name = queryset_utils.get_model_manager(model_name)
+    manager_name = utils.get_model_manager(model_name)
 
     def save(self):
         return mock_class()
