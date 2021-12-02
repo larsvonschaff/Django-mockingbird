@@ -27,7 +27,7 @@ def make_mock_in_bulk_dict(args):
     if len(list(args)) == 0:
         mock_in_bulk_dict['1'] = ' '
     else:
-        for item in args[0]:
+        for item in args:
             mock_in_bulk_dict[item] = ' '
 
     return mock_in_bulk_dict

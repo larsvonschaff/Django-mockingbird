@@ -57,8 +57,8 @@ class TestAnnotateReturnValue(unittest.TestCase):
     def test_annotate_return_value(self):
         kwargs = {'test':'test'}
         return_value = {'original_key':'original_value'}
-        new_return_value = queryset_utils.annotate_return_value(kwargs, return_value)
-        self.assertEqual(new_return_value, {'original_key': ' ', 'test': ' '})
+        new_return_value = queryset_utils.annotate_return_value(return_value, kwargs)
+        self.assertEqual(new_return_value, {'original_key': 'original_value', 'test': ' '})
 
 
 
