@@ -17,7 +17,6 @@ def mock_model(path, specs):
     return decorator
 
 
-#TODO: terrible. need to refactor -  minimize state.
 def resolve_path(path):
     importlib = __import__('importlib')
     parts = path.split('.')
@@ -26,5 +25,6 @@ def resolve_path(path):
     parts.remove(model_name)
     parts.reverse()
     module = '.'.join(parts)
+    print(module)
     return model_name, module
 
