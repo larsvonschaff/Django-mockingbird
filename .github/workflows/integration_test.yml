@@ -28,3 +28,6 @@ jobs:
           git clone https://github.com/larsvonschaff/Django-mockingbird-test-app
           cd Django-mockingbird-test-app
           python manage.py test
+    - name: Run tests
+      run: |
+          python manage.py test
