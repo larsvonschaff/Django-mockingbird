@@ -1,10 +1,16 @@
 from unittest.mock import patch
 from djangomockingbird.make_mocks import make_mocks
+from os import path
+from djangomockingbird.decorator_utils import resolve_input_path, build_file_path
 
-def mock_model(path, specs):
+
+def mock_model(string_path, specs):
     def decorator(func):
         def wrapper(*args, **kwargs):
-            model_name, module = resolve_path(path)
+            module, model_name = resolve_input_path(string_path)
+            final_path = build_file_path(module)
+            if not path.exists(final_path):
+                raise Exception('Invalid input path. Please specify a correct path to the model you would like to mock!')
             importlib = __import__('importlib')
             blogposts = importlib.import_module(module)
             blog_post = getattr(blogposts, model_name)
@@ -15,16 +21,4 @@ def mock_model(path, specs):
             return result
         return wrapper
     return decorator
-
-
-def resolve_path(path):
-    importlib = __import__('importlib')
-    parts = path.split('.')
-    parts.reverse()
-    model_name = parts[0]
-    parts.remove(model_name)
-    parts.reverse()
-    module = '.'.join(parts)
-    print(module)
-    return model_name, module
-
+    
