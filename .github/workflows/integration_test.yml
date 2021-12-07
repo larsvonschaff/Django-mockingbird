@@ -26,7 +26,7 @@ jobs:
     - name: Clone the project
       run: |
           git clone https://github.com/larsvonschaff/Django-mockingbird-test-app
-          cd Django-mockingbird-test-app
     - name: Run tests
       run: |
+          cd Django-mockingbird-test-app
           python manage.py test
