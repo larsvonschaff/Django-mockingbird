@@ -3,4 +3,4 @@ from . import queryset
 from . import queryset_utils
 from . import utils
 from . import decorator_utils
-from .decorator import mock_model
+from djangomockingbird.decorator import mock_model
