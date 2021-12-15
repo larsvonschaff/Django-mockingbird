@@ -1,1 +1,1 @@
-from .decorator import mock_model
+from djangomockingbird.decorator import mock_model
