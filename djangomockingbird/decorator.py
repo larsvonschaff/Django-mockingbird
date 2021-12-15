@@ -1,7 +1,7 @@
 from unittest.mock import patch
-from djangomockingbird.make_mocks import make_mocks
+from .make_mocks import make_mocks
 from os import path
-from djangomockingbird.decorator_utils import resolve_input_path, build_file_path
+from .decorator_utils import resolve_input_path, build_file_path
 
 
 def mock_model(string_path, specs):
