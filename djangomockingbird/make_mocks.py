@@ -30,7 +30,7 @@ def make_mocks(model_name, specs=None, model_method_specs=None):
                 )
                 # handling of custom model methods: user defines the model_method_specs dict, key is name of model, value is expected return
                 # create function from these parameters and set it as an attribute of the mock
-            func = utils.utils.create_function(k, mock_class, v)
+            func = utils.create_function(k, mock_class, v)
             setattr(mock_class, str(k), func)
 
     manager_class = queryset.MockBaseQueryset(mock_class, model_dict)
