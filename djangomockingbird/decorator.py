@@ -1,8 +1,7 @@
 from unittest.mock import patch
 from .make_mocks import make_mocks
 from os import path
-from .decorator_utils import resolve_input_path
-from .decorator_utils import build_file_path
+from .decorator_utils import resolve_input_path, build_file_path
 
 
 def mock_model(string_path, specs):
