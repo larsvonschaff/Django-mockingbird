@@ -1,1 +1,1 @@
-from .decorator import make_mocks
+from .decorator import mock_model
