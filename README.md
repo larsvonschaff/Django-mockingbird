@@ -1,3 +1,5 @@
+
+
 # Django Mockingbird: the fastest way to write the fastest Django unit tests
 
 
@@ -22,7 +24,7 @@ It works by creating a mock object which behaves exactly like the Django model, 
 pip install djangomockingbird
 ```
 
-### Constructions the mocks
+### Usage
 
 ```python
 
@@ -30,28 +32,12 @@ from djangomockingbird import mock_model
 
 @mock_model('myapp.myfile.MyModel')
 def test_my_test():
-    result = function_to_test()
+    some_test_query = MyModel.objects.filter(bar='bar').filter.(foo='foo').first()
+    #some more code
     #assertions here
 
 ```
-my_mock is now an object that mimics Model's behaviour exactly.
-
-### Using the mocks 
-
-
-The most straightforward way is to monkeypatch the object directly using its absolute path. In this example function_to_test is a function that can containt any amount of queries involving Model. With Django Mockingbird only the code below is necessary for this kind of test to pass, no matter how complicated the queries.
-
-
-```python
-from djangomockingbird import make_mocks
-import myapp
-import function_to_test
-
-def test_my_test_case():
-
-    myapp.myfile.Model = make_mocks(Model)
-    result = function_to_test()
-    #assertions here
+With the mock_model decorator this test will pass no matter how complicated the query and will never touch the database.
 
 
 ### Specifiying mock return data
@@ -60,10 +46,9 @@ You can specify the values of specific fields of the model object you are mockin
 
 ```python
 
-mock = make_mocks(Model, specs={'model_field':'desired_value'})
+@mock_model('myapp.myfile.MyModel', specs={'field': 'value'})
 
 ```
-
 
 ### Attention! Cases where returns must be specified: Model methods
 
@@ -72,7 +57,7 @@ If your model has custom methods and they are used by the test, you must specify
 ```python
 
  model_method_specs = {'to_dict': {'': ''}}
- mock = make_mocks(Model, model_method_specs=model_method_specs)
+@mock_model('myapp.myfile.MyModel', model_method_specs=model_method_specs)
  
  ```
 
