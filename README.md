@@ -26,10 +26,12 @@ pip install djangomockingbird
 
 ```python
 
-from models import Model
-from djangomockingbird import make_mocks
+from djangomockingbird import mock_model
 
-my_mock = make_mocks(Model)
+@mock_model('myapp.myfile.MyModel')
+def test_my_test():
+    result = function_to_test()
+    #assertions here
 
 ```
 my_mock is now an object that mimics Model's behaviour exactly.
@@ -51,23 +53,6 @@ def test_my_test_case():
     result = function_to_test()
     #assertions here
 
-```
-A good way to use Django mockingbird is also with [Pytest's](https://docs.pytest.org/en/stable/) monkeypatch.
-
-
-```python
-import pytest
-from djangomockingbird import make_mocks
-import myapp
-import function_to_test
-
-def test_my_test_case(monkeypatch):
-    mock_model = make_mocks(Model)
-    monkeypatch.setattr('myapp.myfile.Model', mock_model)
-    result = function_to_test()
-    #assertions here
-
-```
 
 ### Specifiying mock return data
 
