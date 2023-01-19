@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "djangomockingbird"
-version = "1.0.7"
+version = "1.0.9"
 description = "The fastest way to write the fastest Django unit tests"
 authors = ["larsvonschaff <larsvonschaff@gmail.com>"]
 license = "MIT"
@@ -11,7 +11,7 @@ keywords = ["django", "testing"]
 [tool.poetry.dependencies]
 python = "^3.7"
 django = "^2.2"
-black = "^21.11b1"
+black = "^22.3"
  
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
